@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [author, setAuthor] = useState('Cuong');
   const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +20,11 @@ const Create = () => {
     }).then(() => {
       setIsPending(false);
       console.log('new blog added')
+      // history.go(-1); 
+      navigate(-1);
+      //công dụng là nếu đang thao tác ở trang nào, khi xong sẽ quay về trang trước đó ở.
+      //ví dụ: vào 1 bài viết và tạo 1 bài viết ở đó.Khi xong sẽ quay về bài viết đang truy cập
+      //chứ ko phải ở yên chỗ tạo bài viết
     })
   }
   return (
